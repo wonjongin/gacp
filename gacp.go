@@ -35,6 +35,8 @@ func main() {
 				locGitNum = i
 			}
 		}
+		fmt.Println(aurora.Red("git 프로젝트가 아닙니다!"))
+		os.Exit(1)
 	}
 	fmt.Println(".git 위치: ", locGitNum, locGitPath)
 	cmdGitAdd := exec.Command("git", "add", strings.Replace(locGitPath, ".git", "", 1))
@@ -42,6 +44,7 @@ func main() {
 	if cmdGitAddErr != nil {
 		fmt.Println(cmdGitAddErr)
 		fmt.Println(aurora.Red("add 에러"))
+		os.Exit(1)
 	} else {
 		fmt.Println(string(cmdGitAddOut))
 		fmt.Println(aurora.Green("add 완료"))
@@ -58,6 +61,7 @@ func main() {
 	if cmdGitCommitErr != nil {
 		fmt.Println(cmdGitCommitErr)
 		fmt.Println(aurora.Red("commit 에러"))
+		os.Exit(1)
 	} else {
 		fmt.Println(string(cmdGitCommitOut))
 		fmt.Println(aurora.Green("commit 완료"))
@@ -67,6 +71,7 @@ func main() {
 	if cmdGitPushErr != nil {
 		fmt.Println(cmdGitPushErr)
 		fmt.Println(aurora.Red("push 에러"))
+		os.Exit(1)
 	} else {
 		fmt.Println(string(cmdGitPushOut))
 		fmt.Println(aurora.Green("push 완료"))

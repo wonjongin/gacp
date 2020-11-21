@@ -3,17 +3,31 @@ run:
 
 build:
 	@go build gacp.go -o build/gacp
-
+clean:
+	@rm -r build 
+	@rm -r dist
 cc:
 	@echo "Cross Compile"
-	GOOS=darwin GOARCH=amd64 go build -o build/gacp-darwin-amd64.exe gacp.go
-	GOOS=linux GOARCH=amd64 go build -o build/gacp-linux-amd64.exe gacp.go
-	GOOS=windows GOARCH=amd64 go build -o build/gacp-windows-amd64.exe gacp.go
+	@mkdir build/gacp-darwin-amd64 build/gacp-linux-amd64 build/gacp-windows-amd64
+	GOOS=darwin GOARCH=amd64 go build -o build/gacp-darwin-amd64/gacp gacp.go
+	GOOS=linux GOARCH=amd64 go build -o build/gacp-linux-amd64/gacp gacp.go
+	GOOS=windows GOARCH=amd64 go build -o build/gacp-windows-amd64/gacp.exe gacp.go
+pkg:
+	@echo "Packging"
+	@mkdir dist build build/gacp-darwin-amd64 build/gacp-linux-amd64 build/gacp-windows-amd64
+	GOOS=darwin GOARCH=amd64 go build -o build/gacp-darwin-amd64/gacp gacp.go
+	GOOS=linux GOARCH=amd64 go build -o build/gacp-linux-amd64/gacp gacp.go
+	GOOS=windows GOARCH=amd64 go build -o build/gacp-windows-amd64/gacp.exe gacp.go
+	@pwd
+	@zip -j dist/gacp-darwin-amd64.zip build/gacp-darwin-amd64/*
+	@zip -j dist/gacp-linux-amd64.zip build/gacp-linux-amd64/*
+	@zip -j dist/gacp-windows-amd64.zip build/gacp-windows-amd64/*
+
 
 ccwindow: 
 	@echo "Cross Compile"
-	set GOOS=darwin& set GOARCH=amd64& go build -o build/gacp-darwin-amd64.exe gacp.go
-	set GOOS=linux& set GOARCH=amd64& go build -o build/gacp-linux-amd64.exe gacp.go
+	set GOOS=darwin& set GOARCH=amd64& go build -o build/gacp-darwin-amd64 gacp.go
+	set GOOS=linux& set GOARCH=amd64& go build -o build/gacp-linux-amd64 gacp.go
 	set GOOS=windows& set GOARCH=amd64& go build -o build/gacp-windows-amd64.exe gacp.go
 
 install:
