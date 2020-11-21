@@ -75,6 +75,7 @@ func main() {
 	isPush := true
 	promptPush := &survey.Confirm{
 		Message: "Do you want to push? ",
+		Default: true,
 	}
 	survey.AskOne(promptPush, &isPush)
 	if isPush == true {
