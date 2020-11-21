@@ -72,7 +72,7 @@ func main() {
 		fmt.Println(aurora.Green("commit 완료"))
 	}
 
-	isPush := false
+	isPush := true
 	promptPush := &survey.Confirm{
 		Message: "Do you want to push? ",
 	}
