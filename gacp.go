@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"strings"
 
+	"github.com/AlecAivazis/survey/v2"
 	"github.com/logrusorgru/aurora"
 )
 
@@ -50,8 +51,12 @@ func main() {
 		fmt.Println(aurora.Green("add 완료"))
 	}
 
-	fmt.Print(aurora.Blue("커밋메시지(취소:q): "))
-	fmt.Scanln(&commitMsg)
+	prompt := &survey.Input{
+		Message: "Commit Message (cancel: q):",
+	}
+	survey.AskOne(prompt, &commitMsg)
+	// fmt.Print(aurora.Blue("커밋메시지(취소:q): "))
+	// fmt.Scanln(&commitMsg)
 	if commitMsg == "q" {
 		os.Exit(0)
 		fmt.Println(aurora.Blue("취소합니다."))
@@ -66,14 +71,23 @@ func main() {
 		fmt.Println(string(cmdGitCommitOut))
 		fmt.Println(aurora.Green("commit 완료"))
 	}
-	cmdGitPush := exec.Command("git", "push")
-	cmdGitPushOut, cmdGitPushErr := cmdGitPush.Output()
-	if cmdGitPushErr != nil {
-		fmt.Println(cmdGitPushErr)
-		fmt.Println(aurora.Red("push 에러"))
-		os.Exit(1)
-	} else {
-		fmt.Println(string(cmdGitPushOut))
-		fmt.Println(aurora.Green("push 완료"))
+
+	isPush := false
+	promptPush := &survey.Input{
+		Message: "Do you want to push? ",
 	}
+	survey.AskOne(promptPush, &isPush)
+	if isPush == true {
+		cmdGitPush := exec.Command("git", "push")
+		cmdGitPushOut, cmdGitPushErr := cmdGitPush.Output()
+		if cmdGitPushErr != nil {
+			fmt.Println(cmdGitPushErr)
+			fmt.Println(aurora.Red("push 에러"))
+			os.Exit(1)
+		} else {
+			fmt.Println(string(cmdGitPushOut))
+			fmt.Println(aurora.Green("push 완료"))
+		}
+	}
+
 }
