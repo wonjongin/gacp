@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"strings"
 
-	. "github.com/logrusorgru/aurora"
+	"github.com/logrusorgru/aurora"
 )
 
 func main() {
@@ -41,33 +41,34 @@ func main() {
 	cmdGitAddOut, cmdGitAddErr := cmdGitAdd.Output()
 	if cmdGitAddErr != nil {
 		fmt.Println(cmdGitAddErr)
-		fmt.Println(Red("add 에러"))
+		fmt.Println(aurora.Red("add 에러"))
 	} else {
 		fmt.Println(string(cmdGitAddOut))
-		fmt.Println(Green("add 완료"))
+		fmt.Println(aurora.Green("add 완료"))
 	}
 
-	fmt.Printf("커밋메시지(취소:q): ")
+	fmt.Print(aurora.Blue("커밋메시지(취소:q): "))
 	fmt.Scanln(&commitMsg)
 	if commitMsg == "q" {
 		os.Exit(0)
+		fmt.Println(aurora.Blue("취소합니다."))
 	}
 	cmdGitCommit := exec.Command("git", "commit", "-m", commitMsg)
 	cmdGitCommitOut, cmdGitCommitErr := cmdGitCommit.Output()
 	if cmdGitCommitErr != nil {
 		fmt.Println(cmdGitCommitErr)
-		fmt.Println(Red("commit 에러"))
+		fmt.Println(aurora.Red("commit 에러"))
 	} else {
 		fmt.Println(string(cmdGitCommitOut))
-		fmt.Println(Green("commit 완료"))
+		fmt.Println(aurora.Green("commit 완료"))
 	}
 	cmdGitPush := exec.Command("git", "push")
 	cmdGitPushOut, cmdGitPushErr := cmdGitPush.Output()
 	if cmdGitPushErr != nil {
 		fmt.Println(cmdGitPushErr)
-		fmt.Println(Red("push 에러"))
+		fmt.Println(aurora.Red("push 에러"))
 	} else {
 		fmt.Println(string(cmdGitPushOut))
-		fmt.Println(Green("push 완료"))
+		fmt.Println(aurora.Green("push 완료"))
 	}
 }
