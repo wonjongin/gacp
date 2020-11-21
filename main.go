@@ -32,6 +32,7 @@ func main() {
 	cmdGitAddOut, cmdGitAddErr := cmdGitAdd.Output()
 	if cmdGitAddErr != nil {
 		fmt.Println(cmdGitAddErr)
+		fmt.Println("add 에러")
 	} else {
 		fmt.Println(string(cmdGitAddOut))
 	}
@@ -42,6 +43,7 @@ func main() {
 	cmdGitCommitOut, cmdGitCommitErr := cmdGitCommit.Output()
 	if cmdGitCommitErr != nil {
 		fmt.Println(cmdGitCommitErr)
+		fmt.Println("commit 에러")
 	} else {
 		fmt.Println(string(cmdGitCommitOut))
 	}
@@ -49,6 +51,7 @@ func main() {
 	cmdGitPushOut, cmdGitPushErr := cmdGitPush.Output()
 	if cmdGitPushErr != nil {
 		fmt.Println(cmdGitPushErr)
+		fmt.Println("push 에러")
 	} else {
 		fmt.Println(string(cmdGitPushOut))
 	}
