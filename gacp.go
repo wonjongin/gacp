@@ -34,6 +34,7 @@ func setupUI(){
 		fmt.Println(commitMsg)
 		GitAdd()
 		GitCommit(commitMsg)
+		mainwin.Destroy()
 		GitPush()
 	})
 	btnCancel := ui.NewButton("최소")
