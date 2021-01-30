@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 	"os/exec"
@@ -13,8 +14,7 @@ import (
 )
 
 func setupUI(){
-	var mainwin *ui.Window
-	mainwin = ui.NewWindow("GACP", 400, 200, true)
+	mainwin := ui.NewWindow("GACP", 400, 200, true)
 	mainwin.OnClosing(func(*ui.Window) bool {
 		ui.Quit()
 		return true
@@ -84,8 +84,11 @@ func GitAdd(){
 	locGitPath := CheckGitDir()
 	cmdGitAdd := exec.Command("git", "add", strings.Replace(locGitPath, ".git", "", 1))
 	cmdGitAddOut, cmdGitAddErr := cmdGitAdd.Output()
+	var stderr bytes.Buffer
+	cmdGitAdd.Stderr = &stderr
 	if cmdGitAddErr != nil {
 		fmt.Println(cmdGitAddErr)
+		fmt.Println(stderr.String())
 		fmt.Println(aurora.Red("add 에러"))
 		os.Exit(1)
 	} else {
@@ -98,8 +101,11 @@ func GitAdd(){
 func GitCommit(commitMsg string){
 	cmdGitCommit := exec.Command("git", "commit", "-m", commitMsg)
 	cmdGitCommitOut, cmdGitCommitErr := cmdGitCommit.Output()
+	var stderr bytes.Buffer
+	cmdGitCommit.Stderr = &stderr
 	if cmdGitCommitErr != nil {
 		fmt.Println(cmdGitCommitErr)
+		fmt.Println(stderr.String())
 		fmt.Println(aurora.Red("commit 에러"))
 		os.Exit(1)
 	} else {
@@ -119,8 +125,11 @@ func GitPush(){
 	if isPush == true {
 		cmdGitPush := exec.Command("git", "push")
 		cmdGitPushOut, cmdGitPushErr := cmdGitPush.Output()
+		var stderr bytes.Buffer
+		cmdGitPush.Stderr = &stderr
 		if cmdGitPushErr != nil {
 			fmt.Println(cmdGitPushErr)
+			fmt.Println(stderr.String())
 			fmt.Println(aurora.Red("push 에러"))
 			os.Exit(1)
 		} else {
