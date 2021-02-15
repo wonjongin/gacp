@@ -15,6 +15,14 @@ func main() {
 	locGitPath := ".git"
 	pwd, _ := os.Getwd()
 	numOfPath := strings.Count(pwd, "/")
+	
+	if(len(os.Args) != 2){
+		fmt.Println(aurora.Red(`
+문법에 맞지 않아요. 다음처럼 입력하세요.
+gacp "커밋 메시지"
+		`))
+		os.Exit(1)
+	}
 	commitMsg := os.Args[1]
 
 	if _, err := os.Stat(locGitPath); err == nil {

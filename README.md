@@ -15,7 +15,7 @@
 unzip, wget, install 이 필요합니다.
 
 ```bash
-wget https://github.com/wonjongin/gacp/releases/download/v2.0.0/gacp-darwin-amd64.zip && unzip gacp-darwin-amd64.zip
+wget https://github.com/wonjongin/gacp/releases/download/v2.0.1/gacp-darwin-amd64.zip && unzip gacp-darwin-amd64.zip
 
 install gacp /usr/local/bin/gacp
 
@@ -27,7 +27,7 @@ rm gacp gacp-darwin-amd64.zip
 unzip, wget, install 이 필요합니다.
 
 ```bash
-wget https://github.com/wonjongin/gacp/releases/download/v2.0.0/gacp-linux-amd64.zip && unzip gacp-linux-amd64.zip
+wget https://github.com/wonjongin/gacp/releases/download/v2.0.1/gacp-linux-amd64.zip && unzip gacp-linux-amd64.zip
 
 install gacp /usr/local/bin/gacp
 
