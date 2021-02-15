@@ -1,31 +1,21 @@
 # gacp
 
+##
+
+기존 버전 1과 달리 사용방법이 변경되었습니다. 버전 1의 방식을 원하신다면 v1브랜치에서 이용해 주세요
+
 ## Install
+
 ### Windows
-[Download](https://github.com/wonjongin/gacp/releases/) 여기에서 gacp-windows-amd64.zip 를 다운 받고 압축을 푼 뒤 환경변수에 추가하여 사용하세요.
+
 ### macOS
-```
-wget https://github.com/wonjongin/gacp/releases/download/v1.0.1/gacp-darwin-amd64.zip -O gacp-darwin-amd64.zip 
 
-unzip gacp-darwin-amd64.zip
-
-sudo mv gacp /usr/local/bin/gacp
-
-sudo chmod +x /usr/local/bin/gacp
-```
 ### Linux
+
+## Usage
+
 ```
-wget https://github.com/wonjongin/gacp/releases/download/v1.0.1/gacp-linux-amd64.zip -O gacp-linux-amd64.zip 
-
-unzip gacp-linux-amd64.zip
-
-sudo mv gacp /usr/local/bin/gacp
-
-sudo chmod +x /usr/local/bin/gacp
+gacp "커밋메시지"
 ```
 
-## Usage 
-```
-gacp
-```
-그냥 gacp 라고만 치면 됩니다.
+gacp를 쓴 후 첫번째 인자로 커밋메시지를 입력해주시면 됩니다.

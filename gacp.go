@@ -11,14 +11,6 @@ import (
 )
 
 func main() {
-	fmt.Println(aurora.Bold(`
-    __ _   __ _   ___  _ __  
-   / _' | / _' | / __|| '_ \ 
-  | (_| || (_| || (__ | |_) |
-   \__, | \__,_| \___|| .__/ 
-    __/ |             | |    
-   |___/              |_|    
-  `))
 	locGitNum := 0
 	locGitPath := ".git"
 	pwd, _ := os.Getwd()
