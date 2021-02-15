@@ -36,6 +36,7 @@ func setupUI(){
 		GitCommit(commitMsg)
 		mainwin.Destroy()
 		GitPush()
+		ui.Quit()
 	})
 	btnCancel := ui.NewButton("최소")
 	btnCancel.OnClicked(func(*ui.Button){
