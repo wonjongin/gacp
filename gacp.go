@@ -15,7 +15,7 @@ func main() {
 	locGitPath := ".git"
 	pwd, _ := os.Getwd()
 	numOfPath := strings.Count(pwd, "/")
-	commitMsg := ""
+	commitMsg := os.Args[1]
 
 	if _, err := os.Stat(locGitPath); err == nil {
 		locGitNum = 0
@@ -43,16 +43,16 @@ func main() {
 		fmt.Println(aurora.Green("add 완료"))
 	}
 
-	prompt := &survey.Input{
-		Message: "Commit Message (cancel: q):",
-	}
-	survey.AskOne(prompt, &commitMsg)
-	// fmt.Print(aurora.Blue("커밋메시지(취소:q): "))
-	// fmt.Scanln(&commitMsg)
-	if commitMsg == "q" {
-		os.Exit(0)
-		fmt.Println(aurora.Blue("취소합니다."))
-	}
+	// prompt := &survey.Input{
+	// 	Message: "Commit Message (cancel: q):",
+	// }
+	// survey.AskOne(prompt, &commitMsg)
+	// // fmt.Print(aurora.Blue("커밋메시지(취소:q): "))
+	// // fmt.Scanln(&commitMsg)
+	// if commitMsg == "q" {
+	// 	os.Exit(0)
+	// 	fmt.Println(aurora.Blue("취소합니다."))
+	// }
 	cmdGitCommit := exec.Command("git", "commit", "-m", commitMsg)
 	cmdGitCommitOut, cmdGitCommitErr := cmdGitCommit.Output()
 	if cmdGitCommitErr != nil {
@@ -82,5 +82,4 @@ func main() {
 			fmt.Println(aurora.Green("push 완료"))
 		}
 	}
-
 }
