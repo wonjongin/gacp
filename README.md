@@ -2,7 +2,7 @@
 
 ## ⚠️ Warning!!
 
-기존 버전 1과 달리 사용방법이 변경되었습니다. 버전 1의 방식을 원하신다면 v1브랜치에서 이용해 주세요. ⚠️ <span style="color:red"> **그리고 v2 버전을 사용하실 분은 아래에 사용법을 반드시 숙지해주세요.** </span> ⚠️
+기존 버전 1과 달리 사용방법이 변경되었습니다. 버전 1의 방식을 원하신다면 v1브랜치에서 이용해 주세요. ⚠️ **그리고 v2 버전을 사용하실 분은 아래에 사용법을 반드시 숙지해주세요.** ⚠️
 
 ## 📥 Install
 
@@ -18,6 +18,8 @@ unzip, wget, install 이 필요합니다.
 wget https://github.com/wonjongin/gacp/releases/download/v2.0.0/gacp-darwin-amd64.zip && unzip gacp-darwin-amd64.zip
 
 install gacp /usr/local/bin/gacp
+
+rm gacp gacp-darwin-amd64.zip
 ```
 
 ### Linux
@@ -28,6 +30,8 @@ unzip, wget, install 이 필요합니다.
 wget https://github.com/wonjongin/gacp/releases/download/v2.0.0/gacp-linux-amd64.zip && unzip gacp-linux-amd64.zip
 
 install gacp /usr/local/bin/gacp
+
+rm gacp gacp-linux-amd64.zip
 ```
 
 ## 🖥 Usage
