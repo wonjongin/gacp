@@ -2,7 +2,7 @@ run:
 	@go run gacp.go
 
 build:
-	@go build gacp.go -o build/gacp
+	@go build -o build/gacp gacp.go
 clean:
 	@rm -r build 
 	@rm -r dist
