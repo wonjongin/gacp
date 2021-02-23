@@ -72,29 +72,38 @@ func GitCommit(commitMsg string) {
 	}
 }
 
-// GitPush 함수는 git push 명령어를 실행합니다.
-func GitPush() {
+// AskGitPush 함수는 git push 를 실행할지 물어봅니다.
+func AskGitPush() bool {
 	isPush := true
 	promptPush := &survey.Confirm{
 		Message: "Do you want to push? ",
 		Default: true,
 	}
 	survey.AskOne(promptPush, &isPush)
-	if isPush == true {
-		cmdGitPush := exec.Command("git", "push")
-		cmdGitPushOut, cmdGitPushErr := cmdGitPush.Output()
-		var stderr bytes.Buffer
-		cmdGitPush.Stderr = &stderr
-		if cmdGitPushErr != nil {
-			fmt.Println(cmdGitPushErr)
-			fmt.Println(stderr.String())
-			fmt.Println(aurora.Red("push 에러"))
-			os.Exit(1)
-		} else {
-			fmt.Println(string(cmdGitPushOut))
-			fmt.Println(aurora.Green("push 완료"))
-		}
+	return isPush
+}
+
+// GitPush 함수는 git push 명령어를 실행합니다.
+func GitPush() {
+	cmdGitPush := exec.Command("git", "push")
+	cmdGitPushOut, cmdGitPushErr := cmdGitPush.Output()
+	var stderr bytes.Buffer
+	cmdGitPush.Stderr = &stderr
+	if cmdGitPushErr != nil {
+		fmt.Println(cmdGitPushErr)
+		fmt.Println(stderr.String())
+		fmt.Println(aurora.Red("push 에러"))
+		os.Exit(1)
+	} else {
+		fmt.Println(string(cmdGitPushOut))
+		fmt.Println(aurora.Green("push 완료"))
 	}
+}
+
+// GitAddCommit 함수는 git add, commit을 실행합니다.
+func GitAddCommit(commitMsg string) {
+	GitAdd()
+	GitCommit(commitMsg)
 }
 
 // GitAddCommitPush 함수는 git add, commit, push 를 실행합니다.
